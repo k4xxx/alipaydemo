@@ -1,0 +1,19 @@
+﻿1. 安装环境依赖 pip3 install pycryptodome
+
+2.获取APPID和支付宝公钥和私钥以及应用的公钥和私钥
+https://b.alipay.com/signing/productDetail.htm?productId=I1011000290000001000
+
+3.将获取到的支付宝公钥以及应用私钥分别存放在本地的keys包中的txt文件里
+
+4.复制utils包里的pay.py模块到项目中
+
+5.将views中的相关方法添加到项目中的views中（需在views中导入pay模块）
+
+6.在urls中添加相关url
+
+7.在settings.py中配置如下：
+APPID = "2016082500309412"
+NOTIFY_URL = "http://127.0.0.1:8000/update_order/"  # 如果支付成功，支付宝会向这个地址发送POST请求（校验是否支付已经完成）
+RETURN_URL = "http://127.0.0.1:8000/pay_result/"  # 如果支付成功，重定向回到你的网站的地址。
+PRI_KEY_PATH = "keys/app_private_2048.txt"   # 支付宝公钥txt文件目录
+PUB_KEY_PATH = "keys/alipay_public_2048.txt"  # 应用私钥txt文件目录
